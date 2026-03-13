@@ -1,6 +1,6 @@
 import { BookUser, UserRound, School, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
-import "../pages/dashboard/main.css";
+import "../pages/pages.css";
 export default function Sidebar() {
   return (
     <div className="sidebar">

@@ -1,14 +1,13 @@
 import Sidebar from "../../components/Sidebar";
-export default function UsersPage() {
+export default function LessonsPage() {
   return (
     <div>
       <Sidebar />
       <div className="title">
         <h1>
-          <b>Users</b>
+          <b>Lessons</b>
         </h1>
       </div>
-      <div></div>
     </div>
   );
 }
