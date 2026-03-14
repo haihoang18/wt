@@ -1,7 +1,7 @@
 import Sidebar from "../../components/Sidebar";
 export default function ClassesPage() {
   return (
-    <div>
+    <div className="container">
       <Sidebar />
       <div className="title">
         <h1>

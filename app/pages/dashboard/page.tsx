@@ -1,5 +1,12 @@
 import Sidebar from "../../components/Sidebar";
 export default function Dashboard() {
+  const activities = [
+    "Activity 1",
+    "Activity 2",
+    "Activity 3",
+    "Activity 4",
+    "Activity 5",
+  ];
   return (
     <div className="container">
       <Sidebar />
@@ -12,9 +19,11 @@ export default function Dashboard() {
         <p>Recent Activity</p>
       </div>
       <div className="activity-list">
-        <div className="activity-item">Activity 1</div>
-        <div className="activity-item">Activity 2</div>
-        <div className="activity-item">Activity 3</div>
+        {activities.map((activity, index) => (
+          <div key={index} className="activity-item">
+            {activity}
+          </div>
+        ))}
       </div>
     </div>
   );
