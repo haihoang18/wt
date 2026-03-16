@@ -1,34 +1,28 @@
 "use client";
-import {
-  BookUser,
-  UserRound,
-  School,
-  LayoutDashboard,
-  Icon,
-} from "lucide-react";
+import { BookUser, UserRound, School, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import "../pages/pages.css";
+import "../(pages)/pages.css";
 export default function Sidebar() {
   const pathname = usePathname();
   const menu = [
     {
-      href: "/pages/dashboard",
+      href: "/dashboard",
       tooltip: "Dashboard",
       icon: <LayoutDashboard size={40} />,
     },
     {
-      href: "/pages/users",
+      href: "/users",
       tooltip: "Người dùng",
       icon: <UserRound size={40} />,
     },
     {
-      href: "/pages/classes",
+      href: "/classes",
       tooltip: "Danh sách lớp học",
       icon: <School size={40} />,
     },
     {
-      href: "/pages/lessons",
+      href: "/lessons",
       tooltip: "Quản lý bài học",
       icon: <BookUser size={40} />,
     },

@@ -13,10 +13,21 @@ export default function UsersPage() {
           <span>U</span>
         </div>
         <div className="profile">
-          <p>User's name</p>
-          <p>Email: example@example.com</p>
-          <p>Ngày sinh: dd/mm/yy</p>
-          <p>Ngày tạo : dd/mm/yy</p>
+          <p style={{ fontSize: "30px" }}>
+            <b>Tên người dùng</b>
+          </p>
+          <p>
+            <b>Email</b>
+          </p>
+          <p>abc@gmail.com</p>
+          <p>
+            <b>Ngày sinh</b>
+          </p>
+          <p>dd/mm/yy</p>
+          <p>
+            <b>Ngày tạo</b>
+          </p>
+          <p>dd/mm/yy</p>
         </div>
         <div className="edit-btn">
           <button>

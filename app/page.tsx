@@ -15,7 +15,7 @@ export default function Home() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("./pages/dashboard");
+      router.push("/dashboard");
     } catch (error) {
       console.error("Error signing in:", error);
     }
