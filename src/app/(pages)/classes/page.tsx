@@ -1,6 +1,6 @@
 import { Plus, X } from "lucide-react";
 import Link from "next/link";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../../components/Sidebar";
 export default function ClassesPage() {
   const classes = [
     { id: 1, name: "Lớp 1" },

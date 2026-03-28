@@ -1,4 +1,4 @@
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../../components/Sidebar";
 export default function LessonsPage() {
   const tools = [{ title: "Tạo bài tập" }, { title: "Tạo bài kiểm tra" }];
   return (

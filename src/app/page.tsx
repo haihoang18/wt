@@ -1,7 +1,7 @@
 "use client";
 
 import "./main.css";
-import { auth } from "./lib/firebase";
+import { auth } from "../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
@@ -23,9 +23,9 @@ export default function Home() {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>
+      {/* <h1 style={{ textAlign: "center" }}>
         <b>Letter Dance</b>
-      </h1>
+      </h1> */}
       <div className="login-box">
         <div className="header">
           <h2>Đăng nhập hệ thống</h2>

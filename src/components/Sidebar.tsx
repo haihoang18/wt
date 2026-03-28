@@ -2,7 +2,7 @@
 import { BookUser, UserRound, School, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import "../(pages)/pages.css";
+import "../app/(pages)/pages.css";
 export default function Sidebar() {
   const pathname = usePathname();
   const menu = [
