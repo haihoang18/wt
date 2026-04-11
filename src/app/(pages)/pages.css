@@ -193,11 +193,11 @@ button.add-btn {
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  margin-top: 20px;
 }
 .student-item {
   display: flex;
   align-items: center;
-  gap: 15px;
 
   padding: 25px;
   border-radius: 15px;

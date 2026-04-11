@@ -12,7 +12,7 @@ export default function Sidebar() {
       icon: <LayoutDashboard size={40} />,
     },
     {
-      href: "/users",
+      href: "/user",
       tooltip: "Người dùng",
       icon: <UserRound size={40} />,
     },

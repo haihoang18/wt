@@ -1,14 +1,31 @@
 import { Plus, X } from "lucide-react";
 import Link from "next/link";
 import Sidebar from "../../../components/Sidebar";
-export default function ClassesPage() {
-  const classes = [
-    { id: 1, name: "Lớp 1" },
-    { id: 2, name: "Lớp 2" },
-    { id: 3, name: "Lớp 3" },
-    { id: 4, name: "Lớp 4" },
-    { id: 5, name: "Lớp 5" },
-  ];
+import { getClassesData } from "@/src/services/classesService";
+
+export interface ClassType {
+  id: string;
+  classname: string;
+}
+
+export default async function ClassesPage() {
+  const classes: ClassType[] = await getClassesData();
+  if (!classes) {
+    return (
+      <div>
+        <h1>Lỗi xác thực hoặc không tìm thấy API</h1>
+        <p>
+          Kiểm tra console của terminal (không phải trình duyệt) để xem lỗi
+          fetch.
+        </p>
+      </div>
+    );
+  }
+
+  if (classes.length === 0) {
+    return <div>Database đang trống hoặc chưa kết nối được!</div>;
+  }
+
   return (
     <div className="container">
       <Sidebar />
@@ -32,7 +49,7 @@ export default function ClassesPage() {
       <div className="class-list">
         {classes.map((cls) => (
           <Link key={cls.id} href={`/classes/${cls.id}`} className="class-item">
-            {cls.name}
+            {cls.classname}
           </Link>
         ))}
       </div>

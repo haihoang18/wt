@@ -1,3 +1,5 @@
+-- Lệnh pgsql hiện tại
+
 CREATE TABLE classes (
 	id UUID PRIMARY KEY,
 	classname TEXT NOT NULL,

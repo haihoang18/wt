@@ -1,6 +1,9 @@
 import Sidebar from "../../../components/Sidebar";
 export default function LessonsPage() {
-  const tools = [{ title: "Tạo bài tập" }, { title: "Tạo bài kiểm tra" }];
+  const tools = [
+    { title: "Quản lý bài tập" },
+    { title: "Quản lý bài kiểm tra" },
+  ];
   return (
     <div className="container">
       <Sidebar />

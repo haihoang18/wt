@@ -1,12 +1,11 @@
 import { Pool } from "pg";
 
-// Khai báo cấu hình từ biến môi trường
 const pool = new Pool({
-  user: process.env.DATABASE_USER,
   host: process.env.DATABASE_HOST,
-  database: process.env.DATABASE_NAME,
+  port: Number(process.env.DATABASE_PORT),
+  user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
-  port: 5432,
+  database: process.env.DATABASE_NAME,
 });
 
-export default pool;
+export const query = (text: string, params?: any[]) => pool.query(text, params);

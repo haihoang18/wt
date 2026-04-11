@@ -4,17 +4,38 @@ import "./main.css";
 import { auth } from "../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const email = event.currentTarget.email.value;
     const password = event.currentTarget.password.value;
+    const rememberMe = event.currentTarget["remember-password"].checked;
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      const token = await userCredential.user.getIdToken();
+      const res = await fetch("/api/auth/sync", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error || "Không có quyền truy cập");
+        return;
+      }
       router.push("/dashboard");
     } catch (error) {
       console.error("Error signing in:", error);
@@ -38,6 +59,7 @@ export default function Home() {
               name="email"
               id="email"
               placeholder="Email"
+              autoComplete="username"
               required
             />
             <br />
@@ -48,6 +70,7 @@ export default function Home() {
               name="password"
               id="password"
               placeholder="Nhập mật khẩu"
+              autoComplete="current-password"
               required
             />
             <br />
