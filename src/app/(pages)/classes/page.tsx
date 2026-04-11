@@ -14,10 +14,6 @@ export default async function ClassesPage() {
     return (
       <div>
         <h1>Lỗi xác thực hoặc không tìm thấy API</h1>
-        <p>
-          Kiểm tra console của terminal (không phải trình duyệt) để xem lỗi
-          fetch.
-        </p>
       </div>
     );
   }
