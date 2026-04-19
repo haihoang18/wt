@@ -1,13 +1,16 @@
+import { verifyAuth } from "@/src/lib/auth";
 import Sidebar from "../../../components/Sidebar";
-import { getUserData } from "@/src/services/userService";
+import { getUserData } from "@/src/services/user.service";
 
 export default async function UserPage() {
-  const user = await getUserData();
+  const decoded = await verifyAuth();
+
+  if (!decoded) return <h1>Lỗi xác thực</h1>;
+  const user = await getUserData(decoded.uid);
   if (!user) {
-    // return <div>Không có quyền truy cập</div>;
     return (
       <div>
-        <h1>Lỗi xác thực hoặc không tìm thấy API</h1>
+        <h1>Lỗi xác thực</h1>
       </div>
     );
   }

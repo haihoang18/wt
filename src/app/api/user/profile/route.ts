@@ -1,34 +1,15 @@
-import admin from "@/src/lib/firebase-admin";
-import { query } from "@/src/lib/db";
-import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
+import { verifyAuth } from "@/src/lib/auth";
+import { NextRequest, NextResponse } from "next/server";
+import { getUserData } from "@/src/services/user.service";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("session")?.value;
+    const user = await verifyAuth(req);
+    if (!user)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    if (!token) {
-      return NextResponse.json({ error: "Chưa đăng nhập" }, { status: 401 });
-    }
-
-    const decoded = await admin.auth().verifyIdToken(token);
-
-    const result = await query(
-      "SELECT full_name, email, created_at FROM users WHERE firebase_uid = $1",
-      [decoded.uid],
-    );
-
-    const user = result.rows[0];
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "Người dùng không tồn tại" },
-        { status: 404 },
-      );
-    }
-
-    return NextResponse.json(user);
+    const data = await getUserData(user.uid);
+    return NextResponse.json(data);
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Lỗi server" }, { status: 500 });

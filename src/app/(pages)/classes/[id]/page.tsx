@@ -1,6 +1,6 @@
 import { Plus, X } from "lucide-react";
 import Sidebar from "../../../../components/Sidebar";
-import { getStudentData } from "@/src/services/studentService";
+import { getStudentData } from "@/src/services/student.service";
 export default async function ClassDetailPage({
   params,
 }: {

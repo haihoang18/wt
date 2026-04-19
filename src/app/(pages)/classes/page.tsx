@@ -1,15 +1,13 @@
 import { Plus, X } from "lucide-react";
 import Link from "next/link";
 import Sidebar from "../../../components/Sidebar";
-import { getClassesData } from "@/src/services/classesService";
-
-export interface ClassType {
-  id: string;
-  classname: string;
-}
+import { getClassesData } from "@/src/services/classes.service";
+import { verifyAuth } from "@/src/lib/auth";
 
 export default async function ClassesPage() {
-  const classes: ClassType[] = await getClassesData();
+  const decoded = await verifyAuth();
+  if (!decoded) return <h1>Lỗi xác thực</h1>;
+  const classes = await getClassesData(decoded.uid);
   if (!classes) {
     return (
       <div>

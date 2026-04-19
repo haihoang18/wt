@@ -15,7 +15,6 @@ export default function Home() {
     event.preventDefault();
     const email = event.currentTarget.email.value;
     const password = event.currentTarget.password.value;
-    const rememberMe = event.currentTarget["remember-password"].checked;
 
     try {
       const userCredential = await signInWithEmailAndPassword(

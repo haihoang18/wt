@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import admin from "@/src/lib/firebase-admin"; //
 import { query } from "@/src/lib/db"; //
 import { cookies } from "next/headers";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const authHeader = req.headers.get("authorization");
     const token = authHeader?.split("Bearer ")[1];
@@ -13,18 +13,25 @@ export async function POST(req: NextRequest) {
     }
 
     const decoded = await admin.auth().verifyIdToken(token);
-    const { uid, email } = decoded;
+    const { uid } = decoded;
 
-    const existing = await query(
+    const { rows } = await query(
       "SELECT * FROM users WHERE firebase_uid = $1",
       [uid],
     );
+
+    if (rows.length == 0) {
+      return NextResponse.json(
+        { error: "User not found in system" },
+        { status: 403 },
+      );
+    }
 
     const cookieStore = await cookies();
     cookieStore.set("session", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24 * 5,
+      maxAge: 3600,
       path: "/",
     });
 

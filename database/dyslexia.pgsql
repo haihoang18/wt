@@ -57,3 +57,4 @@ CREATE TABLE class_lesson (
 	class_id UUID REFERENCES classes,
 	lesson_id UUID REFERENCES lessons
 );
+
